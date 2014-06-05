@@ -1,9 +1,18 @@
 # -*- coding: utf-8 -*-
 
 """
-# English Word Segmentation in Python
+English Word Segmentation in Python
 
-The number 1024908267229 is the total number of words in the corpus. A
+Word segmentation is the process of dividing a phrase without spaces back
+into its constituent parts. For example, consider a phrase like "thisisatest".
+For humans, it's relatively easy to parse. This module makes it easy for
+machines too. Use `segment` to parse a phrase into its parts:
+
+>>> from wordsegment import segment
+>>> segment('thisisatest')
+['this', 'is', 'a', 'test']
+
+In the code, 1024908267229 is the total number of words in the corpus. A
 subset of this corpus is found in unigrams.txt and bigrams.txt which
 should accompany this file. A copy of these files may be found at
 http://norvig.com/ngrams/ under the names count_1w.txt and count_2w.txt
@@ -19,6 +28,7 @@ Original Copyright (c) 2008-2009 by Peter Norvig
 """
 
 import sys
+from os.path import join, dirname, realpath
 from math import log10
 from functools import wraps
 
@@ -31,8 +41,8 @@ def parse_file(filename):
         lines = (line.split('\t') for line in fptr)
         return dict((word, float(number)) for word, number in lines)
 
-unigram_counts = parse_file('unigrams.txt')
-bigram_counts = parse_file('bigrams.txt')
+unigram_counts = parse_file(join(dirname(realpath(__file__)), 'unigrams.txt'))
+bigram_counts = parse_file(join(dirname(realpath(__file__)), 'bigrams.txt'))
 
 def memoize(func):
     """Memoize arguments to function `func`."""
@@ -103,6 +113,11 @@ def segment(text):
     return result_words
 
 def main(args=''):
+    """
+    Command-line entry-point. Parses args into in-file and out-file then
+    reads lines from infile, segments the lines, and writes the result
+    to outfile. Input and output default to stdin and stdout respectively.
+    """
     import argparse
 
     parser = argparse.ArgumentParser(description='English Word Segmentation')
@@ -119,3 +134,10 @@ def main(args=''):
 
 if __name__ == '__main__':
     main(sys.argv[1:])
+
+__title__ = 'English Word Segmentation'
+__version__ = '0.2'
+__build__ = 0x0002
+__author__ = 'Grant Jenks'
+__license__ = 'Apache 2.0'
+__copyright__ = 'Copyright (c) 2014 Grant Jenks'

@@ -9,5 +9,5 @@
 
 # setup sdist, test and upload directories
 /dist/
-/sortedcontainers.egg-info/
+/wordsegment.egg-info/
 /.tox/

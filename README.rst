@@ -1,16 +1,10 @@
 English Word Segmentation in Python
 ===================================
 
-WordSegment is an Apache2 licensed implementation of English word segmentation based on TODO
+WordSegment is an Apache2 licensed module for English word segmentation, written
+in pure-Python, and based on a trillion-word corpus.
 
-Features
---------
-
-Quickstart
-----------
-
-Documentation
--------------
+// copy from index
 
 Useful Links
 ------------

@@ -1,0 +1,237 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>English Word Segmentation in Python &mdash; English Word Segmentation 0.2 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="English Word Segmentation 0.2 documentation" href="#" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li><a href="#">English Word Segmentation 0.2 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="english-word-segmentation-in-python">
+<h1>English Word Segmentation in Python<a class="headerlink" href="#english-word-segmentation-in-python" title="Permalink to this headline">¶</a></h1>
+<p>WordSegment is an <a class="reference internal" href="#apache2"><em>Apache2 Licensed</em></a> module for English word
+segmentation, written in pure-Python, and based on a trillion-word corpus.</p>
+<p>Based on code from the chapter &#8220;<a class="reference external" href="http://norvig.com/ngrams/">Natural Language Corpus Data</a>&#8221; by Peter Norvig
+from the book &#8220;<a class="reference external" href="http://oreilly.com/catalog/9780596157111/">Beautiful Data</a>&#8221; (Segaran and Hammerbacher, 2009).</p>
+<p>Data files are derived from the <a class="reference external" href="http://googleresearch.blogspot.com/2006/08/all-our-n-gram-are-belong-to-you.html">Google Web Trillion Word Corpus</a>, as described
+by Thorsten Brants and Alex Franz, and <a class="reference external" href="https://catalog.ldc.upenn.edu/LDC2006T13">distributed</a> by the Linguistic Data
+Consortium. This module contains only a subset of that data. The unigram data
+includes only the most common 333,000 words. Similarly, bigram data includes
+only the most common 250,000 phrases. Every word and phrase is lowercased with
+punctuation removed.</p>
+<div class="section" id="features">
+<h2>Features<a class="headerlink" href="#features" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Pure-Python</li>
+<li>Fully documented</li>
+<li>100% test coverage</li>
+<li>Includes unigram and bigram data</li>
+<li>Command line interface for batch processing</li>
+<li>Easy to hack (e.g. different scoring, new data, different language)</li>
+<li>Developed on Python 2.7</li>
+<li>Tested on CPython 2.6, 2.7, 3.2, 3.3, 3.4 and PyPy 2.2</li>
+</ul>
+</div>
+<div class="section" id="user-guide">
+<h2>User Guide<a class="headerlink" href="#user-guide" title="Permalink to this headline">¶</a></h2>
+<p>Installing WordSegment is simple with
+<a class="reference external" href="http://www.pip-installer.org/">pip</a>:</p>
+<div class="highlight-python"><div class="highlight"><pre>&gt; pip install wordsegment
+</pre></div>
+</div>
+<p>You can access documentation in the interpreter with Python&#8217;s built-in help
+function:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">wordsegment</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">help</span><span class="p">(</span><span class="n">wordsegment</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>In your own Python programs, you&#8217;ll mostly want to use <a class="reference internal" href="#segment"><em>segment</em></a>
+to divide a phrase into a list of its parts:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">wordsegment</span> <span class="kn">import</span> <span class="n">segment</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">segment</span><span class="p">(</span><span class="s">&#39;thisisatest&#39;</span><span class="p">)</span>
+<span class="go">[&#39;this&#39;, &#39;is&#39;, &#39;a&#39;, &#39;test&#39;]</span>
+</pre></div>
+</div>
+<p>WordSegment also provides a command-line interface for batch processing. This
+interface accepts two arguments: in-file and out-file. Lines from in-file are
+segmented iteratively, joined by a space, and written to out-file. Input and
+output default to stdin and stdout respectively.:</p>
+<div class="highlight-python"><div class="highlight"><pre>&gt; echo thisisatest | python -m wordsegment
+this is a test
+</pre></div>
+</div>
+</div>
+<div class="section" id="api-documentation">
+<h2>API Documentation<a class="headerlink" href="#api-documentation" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="segment"></span><dl class="function">
+<dt>
+<tt class="descname">segment</tt><big>(</big><em>text</em><big>)</big></dt>
+<dd><p>Return a list of words that is the best segmenation of <cite>text</cite>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="score">
+<tt class="descname">score</tt><big>(</big><em>word</em>, <em>prev=None</em><big>)</big><a class="headerlink" href="#score" title="Permalink to this definition">¶</a></dt>
+<dd><p>Score a <cite>word</cite> in the context of the previous word, <cite>prev</cite>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="divide">
+<tt class="descname">divide</tt><big>(</big><em>text</em>, <em>limit=24</em><big>)</big><a class="headerlink" href="#divide" title="Permalink to this definition">¶</a></dt>
+<dd><p>Yield (prefix, suffix) pairs from <cite>text</cite> with len(prefix) not
+exceeding <cite>limit</cite>.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="unigram_counts">
+<tt class="descname">unigram_counts</tt><a class="headerlink" href="#unigram_counts" title="Permalink to this definition">¶</a></dt>
+<dd><p>Mapping of (unigram, count) pairs.
+Loaded from the file &#8216;unigrams.txt&#8217;.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="bigram_counts">
+<tt class="descname">bigram_counts</tt><a class="headerlink" href="#bigram_counts" title="Permalink to this definition">¶</a></dt>
+<dd><p>Mapping of (bigram, count) pairs.
+Loaded from the file &#8216;bigrams.txt&#8217;.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="useful-links">
+<h2>Useful Links<a class="headerlink" href="#useful-links" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><a class="reference external" href="http://www.grantjenks.com/blog/portfolio-post/english-word-segmentation-python/">WordSegment Project &#64; GrantJenks.com</a></li>
+<li><a class="reference external" href="https://pypi.python.org/pypi/wordsegment">WordSegment &#64; PyPI</a></li>
+<li><a class="reference external" href="https://github.com/grantjenks/wordsegment">WordSegment &#64; Github</a></li>
+<li><a class="reference external" href="https://github.com/grantjenks/wordsegment/issues">Issue Tracker</a></li>
+</ul>
+</div>
+<div class="section" id="indices-and-utilities">
+<h2>Indices and Utilities<a class="headerlink" href="#indices-and-utilities" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><a class="reference internal" href="genindex.html"><em>Index</em></a></li>
+<li><a class="reference internal" href="py-modindex.html"><em>Module Index</em></a></li>
+<li><a class="reference internal" href="search.html"><em>Search Page</em></a></li>
+</ul>
+</div>
+<div class="section" id="apache2-license">
+<span id="apache2"></span><h2>Apache2 License<a class="headerlink" href="#apache2-license" title="Permalink to this headline">¶</a></h2>
+<p>A large number of open source projects you find today are <a class="reference external" href="http://www.opensource.org/licenses/gpl-license.php">GPL Licensed</a>.
+A project that is released as GPL cannot be used in any commercial product
+without the product itself also being offered as open source.</p>
+<p>The MIT, BSD, ISC, and Apache2 licenses are great alternatives to the GPL
+that allow your open-source software to be used freely in proprietary,
+closed-source software.</p>
+<p>SortedContainers is released under terms of <a class="reference external" href="http://opensource.org/licenses/Apache-2.0">Apache2 License</a>.</p>
+</div>
+<div class="section" id="wordsegment-license">
+<h2>WordSegment License<a class="headerlink" href="#wordsegment-license" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><p>Copyright (c) 2014 Grant Jenks</p>
+<blockquote>
+<div><p>Licensed under the Apache License, Version 2.0 (the &#8220;License&#8221;);
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at</p>
+<blockquote>
+<div><a class="reference external" href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a></div></blockquote>
+<p>Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an &#8220;AS IS&#8221; BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.</p>
+</div></blockquote>
+</div></blockquote>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="#">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">English Word Segmentation in Python</a><ul>
+<li><a class="reference internal" href="#features">Features</a></li>
+<li><a class="reference internal" href="#user-guide">User Guide</a></li>
+<li><a class="reference internal" href="#api-documentation">API Documentation</a></li>
+<li><a class="reference internal" href="#useful-links">Useful Links</a></li>
+<li><a class="reference internal" href="#indices-and-utilities">Indices and Utilities</a></li>
+<li><a class="reference internal" href="#apache2-license">Apache2 License</a></li>
+<li><a class="reference internal" href="#wordsegment-license">WordSegment License</a></li>
+</ul>
+</li>
+</ul>
+
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/index.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li><a href="#">English Word Segmentation 0.2 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright Copyright (c) 2014 Grant Jenks.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

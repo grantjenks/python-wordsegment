@@ -23,7 +23,7 @@ with open('LICENSE') as fptr:
     license = fptr.read()
 
 setup(
-    name=wordsegment.__title__,
+    name='wordsegment',
     version=wordsegment.__version__,
     description='English word segmentation.',
     long_description=readme,
@@ -31,10 +31,11 @@ setup(
     author_email='contact@grantjenks.com',
     url='http://www.grantjenks.com/blog/portfolio-post/english-word-segmentation-python/',
     license=license,
-    packages=find_packages(exclude=('tests', 'docs')),
+    py_modules=['wordsegment'],
     tests_require=['tox'],
     cmdclass={'test': Tox},
-    classifiers=(
+    platforms='any',
+    classifiers=[
         'Development Status :: 4 - Beta',
         'Intended Audience :: Developers',
         'Natural Language :: English',
@@ -46,5 +47,5 @@ setup(
         'Programming Language :: Python :: 3.2',
         'Programming Language :: Python :: 3.3',
         'Programming Language :: Python :: 3.4',
-    ),
+    ],
 )
