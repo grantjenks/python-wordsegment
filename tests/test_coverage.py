@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 
 import sys
-from StringIO import StringIO
 from .context import wordsegment
 from wordsegment import segment, main
 
