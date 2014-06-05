@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 """
 # English Word Segmentation in Python
 
@@ -16,12 +18,11 @@ http://oreilly.com/catalog/9780596157111/
 Original Copyright (c) 2008-2009 by Peter Norvig
 """
 
+import sys
 from math import log10
 from functools import wraps
 
-from sys import hexversion
-
-if hexversion < 0x03000000:
+if sys.hexversion < 0x03000000:
     range = xrange
 
 def parse_file(filename):
@@ -81,23 +82,40 @@ def score(word, prev=None):
 
             return score(word)
 
-@memoize
-def segment(text, prev='<S>'): 
-    """
-    Return (score, words) where words is the best
-    segmentation of `text`.
-    """
-    if text is '':
-        return 0.0, []
+def segment(text):
+    """Return a list of words that is the best segmenation of `text`."""
 
-    def candidates():
-        for prefix, suffix in divide(text):
-            prefix_score = log10(score(prefix, prev))
-            suffix_score, suffix_words = segment(suffix, prefix)
-            yield (prefix_score + suffix_score, [prefix] + suffix_words)
+    @memoize
+    def search(text, prev='<S>'):
+        if text is '':
+            return 0.0, []
 
-    return max(candidates())
+        def candidates():
+            for prefix, suffix in divide(text):
+                prefix_score = log10(score(prefix, prev))
+                suffix_score, suffix_words = search(suffix, prefix)
+                yield (prefix_score + suffix_score, [prefix] + suffix_words)
+
+        return max(candidates())
+
+    result_score, result_words = search(text)
+
+    return result_words
+
+def main(args=''):
+    import argparse
+
+    parser = argparse.ArgumentParser(description='English Word Segmentation')
+    
+    parser.add_argument('infile', nargs='?', type=argparse.FileType('r'),
+                        default=sys.stdin)
+    parser.add_argument('outfile', nargs='?', type=argparse.FileType('w'),
+                        default=sys.stdout)
+
+    args = parser.parse_args(args)
+
+    for line in args.infile:
+        args.outfile.write(' '.join(segment(line)))
 
 if __name__ == '__main__':
-    import IPython
-    IPython.embed()
+    main(sys.argv[1:])
