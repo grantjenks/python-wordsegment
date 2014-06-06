@@ -1,6 +1,9 @@
 English Word Segmentation in Python
 ===================================
 
+.. image:: https://api.travis-ci.org/grantjenks/wordsegment.svg
+    :target: http://www.grantjenks.com/blog/portfolio-post/english-word-segmentation-python/
+
 WordSegment is an Apache2 licensed module for English word segmentation, written
 in pure-Python, and based on a trillion-word corpus.
 
@@ -45,8 +48,8 @@ function:
     >>> import wordsegment
     >>> help(wordsegment)
 
-In your own Python programs, you'll mostly want to use :ref:`segment <segment>`
-to divide a phrase into a list of its parts:
+In your own Python programs, you'll mostly want to use *segment* to divide a
+phrase into a list of its parts:
 
     >>> from wordsegment import segment
     >>> segment('thisisatest')
@@ -63,27 +66,25 @@ output default to stdin and stdout respectively.::
 API Documentation
 -----------------
 
-.. _`segment`:
-
-.. function:: segment(text)
+- segment(text)
 
     Return a list of words that is the best segmenation of `text`.
 
-.. function:: score(word, prev=None)
+- score(word, prev=None)
 
     Score a `word` in the context of the previous word, `prev`.
 
-.. function:: divide(text, limit=24)
+- divide(text, limit=24)
 
     Yield (prefix, suffix) pairs from `text` with len(prefix) not
     exceeding `limit`.
 
-.. data:: unigram_counts
+- unigram_counts
 
     Mapping of (unigram, count) pairs.
     Loaded from the file 'unigrams.txt'.
 
-.. data:: bigram_counts
+- bigram_counts
 
     Mapping of (bigram, count) pairs.
     Loaded from the file 'bigrams.txt'.
@@ -105,7 +106,7 @@ Useful Links
 WordSegment License
 -------------------
 
-Copyright 2014 Grant Jenks
+Copyright (c) 2014 Grant Jenks
 
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.
