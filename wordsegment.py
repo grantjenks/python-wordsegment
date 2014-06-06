@@ -97,7 +97,7 @@ def segment(text):
 
     @memoize
     def search(text, prev='<S>'):
-        if text is '':
+        if text == '':
             return 0.0, []
 
         def candidates():
