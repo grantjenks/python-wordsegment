@@ -32,6 +32,8 @@ setup(
     url='http://www.grantjenks.com/blog/portfolio-post/english-word-segmentation-python/',
     license=license,
     py_modules=['wordsegment'],
+    packages=['wordsegment_data'],
+    package_data={'wordsegment_data': ['*.txt']},
     tests_require=['tox'],
     cmdclass={'test': Tox},
     platforms='any',

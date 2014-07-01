@@ -41,8 +41,8 @@ def parse_file(filename):
         lines = (line.split('\t') for line in fptr)
         return dict((word, float(number)) for word, number in lines)
 
-unigram_counts = parse_file(join(dirname(realpath(__file__)), 'unigrams.txt'))
-bigram_counts = parse_file(join(dirname(realpath(__file__)), 'bigrams.txt'))
+unigram_counts = parse_file(join(dirname(realpath(__file__)), 'wordsegment_data', 'unigrams.txt'))
+bigram_counts = parse_file(join(dirname(realpath(__file__)), 'wordsegment_data', 'bigrams.txt'))
 
 def memoize(func):
     """Memoize arguments to function `func`."""
@@ -136,8 +136,8 @@ if __name__ == '__main__':
     main(sys.argv[1:])
 
 __title__ = 'English Word Segmentation'
-__version__ = '0.2'
-__build__ = 0x0002
+__version__ = '0.3'
+__build__ = 0x0003
 __author__ = 'Grant Jenks'
 __license__ = 'Apache 2.0'
 __copyright__ = 'Copyright (c) 2014 Grant Jenks'
