@@ -18,7 +18,7 @@ should accompany this file. A copy of these files may be found at
 http://norvig.com/ngrams/ under the names count_1w.txt and count_2w.txt
 respectively.
 
-# Copyright (c) 2014 by Grant Jenks
+Copyright (c) 2015 by Grant Jenks
 
 Based on code from the chapter "Natural Language Corpus Data"
 from the book "Beautiful Data" (Segaran and Hammerbacher, 2009)
@@ -41,8 +41,9 @@ def parse_file(filename):
         lines = (line.split('\t') for line in fptr)
         return dict((word, float(number)) for word, number in lines)
 
-unigram_counts = parse_file(join(dirname(realpath(__file__)), 'wordsegment_data', 'unigrams.txt'))
-bigram_counts = parse_file(join(dirname(realpath(__file__)), 'wordsegment_data', 'bigrams.txt'))
+basepath = join(dirname(realpath(__file__)), 'wordsegment_data')
+unigram_counts = parse_file(join(basepath, 'unigrams.txt'))
+bigram_counts = parse_file(join(basepath, 'bigrams.txt'))
 
 def memoize(func):
     """Memoize arguments to function `func`."""
@@ -135,9 +136,9 @@ def main(args=''):
 if __name__ == '__main__':
     main(sys.argv[1:])
 
-__title__ = 'English Word Segmentation'
-__version__ = '0.3'
-__build__ = 0x0003
+__title__ = 'wordsegment'
+__version__ = '0.5.1'
+__build__ = 0x000501
 __author__ = 'Grant Jenks'
 __license__ = 'Apache 2.0'
-__copyright__ = 'Copyright (c) 2014 Grant Jenks'
+__copyright__ = 'Copyright 2015 Grant Jenks'

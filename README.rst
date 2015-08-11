@@ -27,14 +27,14 @@ Features
 
 - Pure-Python
 - Fully documented
-- 100% test coverage
+- 100% Test Coverage
 - Includes unigram and bigram data
 - Command line interface for batch processing
 - Easy to hack (e.g. different scoring, new data, different language)
 - Developed on Python 2.7
-- Tested on CPython 2.6, 2.7, 3.2, 3.3, 3.4 and PyPy 2.2
+- Tested on CPython 2.6, 2.7, 3.2, 3.3, 3.4 and PyPy 2.5+, PyPy3 2.4+
 
-User Guide
+Quickstart
 ----------
 
 Installing WordSegment is simple with
@@ -47,6 +47,9 @@ function:
 
     >>> import wordsegment
     >>> help(wordsegment)
+
+Tutorial
+--------
 
 In your own Python programs, you'll mostly want to use *segment* to divide a
 phrase into a list of its parts:
@@ -63,59 +66,39 @@ output default to stdin and stdout respectively.::
     > echo thisisatest | python -m wordsegment
     this is a test
 
-API Documentation
------------------
+// todo: show score
+// todo: show divide
+// todo: show unigram_counts
+// todo: show digram_counts
 
-- segment(text)
+Reference and Indices
+---------------------
 
-    Return a list of words that is the best segmenation of `text`.
+* `WordSegment Documentation`_
+* `WordSegment API Reference`_
+* `WordSegment at PyPI`_
+* `WordSegment at Github`_
+* `WordSegment Issue Tracker`_
 
-- score(word, prev=None)
-
-    Score a `word` in the context of the previous word, `prev`.
-
-- divide(text, limit=24)
-
-    Yield (prefix, suffix) pairs from `text` with len(prefix) not
-    exceeding `limit`.
-
-- unigram_counts
-
-    Mapping of (unigram, count) pairs.
-    Loaded from the file 'unigrams.txt'.
-
-- bigram_counts
-
-    Mapping of (bigram, count) pairs.
-    Loaded from the file 'bigrams.txt'.
-
-Useful Links
-------------
-
-- `WordSegment Project @ GrantJenks.com`_
-- `WordSegment @ PyPI`_
-- `WordSegment @ Github`_
-- `Issue Tracker`_
-
-.. _`WordSegment Project @ GrantJenks.com`: http://www.grantjenks.com/blog/portfolio-post/english-word-segmentation-python/
-.. _`WordSegment @ PyPI`: https://pypi.python.org/pypi/wordsegment
-.. _`WordSegment @ Github`: https://github.com/grantjenks/wordsegment
-.. _`Issue Tracker`: https://github.com/grantjenks/wordsegment/issues
-
+.. _`WordSegment Documentation`: http://www.grantjenks.com/docs/wordsegment/
+.. _`WordSegment API Reference`: http://www.grantjenks.com/docs/wordsegment/api.html
+.. _`WordSegment at PyPI`: https://pypi.python.org/pypi/wordsegment
+.. _`WordSegment at Github`: https://github.com/grantjenks/wordsegment
+.. _`WordSegment Issue Tracker`: https://github.com/grantjenks/wordsegment/issues
 
 WordSegment License
 -------------------
 
-Copyright (c) 2014 Grant Jenks
+Copyright 2015 Grant Jenks
 
-   Licensed under the Apache License, Version 2.0 (the "License");
-   you may not use this file except in compliance with the License.
-   You may obtain a copy of the License at
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
 
-       http://www.apache.org/licenses/LICENSE-2.0
+    http://www.apache.org/licenses/LICENSE-2.0
 
-   Unless required by applicable law or agreed to in writing, software
-   distributed under the License is distributed on an "AS IS" BASIS,
-   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-   See the License for the specific language governing permissions and
-   limitations under the License.
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.

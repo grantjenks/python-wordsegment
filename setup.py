@@ -29,7 +29,7 @@ setup(
     long_description=readme,
     author='Grant Jenks',
     author_email='contact@grantjenks.com',
-    url='http://www.grantjenks.com/blog/portfolio-post/english-word-segmentation-python/',
+    url='http://www.grantjenks.com/docs/wordsegment/',
     license=license,
     py_modules=['wordsegment'],
     packages=['wordsegment_data'],
