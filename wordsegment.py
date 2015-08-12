@@ -45,16 +45,6 @@ basepath = join(dirname(realpath(__file__)), 'wordsegment_data')
 unigram_counts = parse_file(join(basepath, 'unigrams.txt'))
 bigram_counts = parse_file(join(basepath, 'bigrams.txt'))
 
-def memoize(func):
-    """Memoize arguments to function `func`."""
-    cache = dict()
-    @wraps(func)
-    def wrapper(*args):
-        if args not in cache:
-            cache[args] = func(*args)
-        return cache[args]
-    return wrapper
-
 def divide(text, limit=24):
     """
     Yield (prefix, suffix) pairs from text with len(prefix) not
@@ -96,7 +86,8 @@ def score(word, prev=None):
 def segment(text):
     """Return a list of words that is the best segmenation of `text`."""
 
-    @memoize
+    memo = dict()
+
     def search(text, prev='<S>'):
         if text == '':
             return 0.0, []
@@ -104,7 +95,12 @@ def segment(text):
         def candidates():
             for prefix, suffix in divide(text):
                 prefix_score = log10(score(prefix, prev))
-                suffix_score, suffix_words = search(suffix, prefix)
+
+                pair = (suffix, prefix)
+                if pair not in memo:
+                    memo[pair] = search(suffix, prefix)
+                suffix_score, suffix_words = memo[pair]
+
                 yield (prefix_score + suffix_score, [prefix] + suffix_words)
 
         return max(candidates())
@@ -122,7 +118,7 @@ def main(args=''):
     import argparse
 
     parser = argparse.ArgumentParser(description='English Word Segmentation')
-    
+
     parser.add_argument('infile', nargs='?', type=argparse.FileType('r'),
                         default=sys.stdin)
     parser.add_argument('outfile', nargs='?', type=argparse.FileType('w'),
