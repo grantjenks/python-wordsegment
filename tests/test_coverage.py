@@ -45,4 +45,6 @@ def test_segment_12():
 
 def test_main():
     main(['tests/test.txt'])
-    assert sys.stdout.getvalue() == 'choose spain \nthis is a test \n'
+    import os
+    result = os.linesep.join(('choose spain', 'this is a test')) + os.linesep
+    assert sys.stdout.getvalue() == result
