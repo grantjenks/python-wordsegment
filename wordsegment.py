@@ -36,7 +36,7 @@ if sys.hexversion < 0x03000000:
     range = xrange
 
 def parse_file(filename):
-    """Read `filename` and parse tab-separated file of (word, count) pairs."""
+    "Read `filename` and parse tab-separated file of (word, count) pairs."
     with open(filename) as fptr:
         lines = (line.split('\t') for line in fptr)
         return dict((word, float(number)) for word, number in lines)
@@ -47,14 +47,14 @@ bigram_counts = parse_file(join(basepath, 'bigrams.txt'))
 
 def divide(text, limit=24):
     """
-    Yield (prefix, suffix) pairs from text with len(prefix) not
+    Yield `(prefix, suffix)` pairs from `text` with `len(prefix)` not
     exceeding `limit`.
     """
     for pos in range(1, min(len(text), limit) + 1):
         yield (text[:pos], text[pos:])
 
 def score(word, prev=None):
-    """Score a `word` in the context of the previous word, `prev`."""
+    "Score a `word` in the context of the previous word, `prev`."
 
     if prev is None:
         if word in unigram_counts:
@@ -83,8 +83,13 @@ def score(word, prev=None):
 
             return score(word)
 
+def clean(text):
+    "Return `text` lower-cased and non-alpha characters removed."
+    alphabet = set('abcdefghijklmnopqrstuvwxyz')
+    return ''.join(letter for letter in text.lower() if letter in alphabet)
+
 def segment(text):
-    """Return a list of words that is the best segmenation of `text`."""
+    "Return a list of words that is the best segmenation of `text`."
 
     memo = dict()
 
@@ -105,7 +110,7 @@ def segment(text):
 
         return max(candidates())
 
-    result_score, result_words = search(text)
+    result_score, result_words = search(clean(text))
 
     return result_words
 
@@ -115,7 +120,7 @@ def main(args=''):
     reads lines from infile, segments the lines, and writes the result
     to outfile. Input and output default to stdin and stdout respectively.
     """
-    import argparse
+    import os, argparse
 
     parser = argparse.ArgumentParser(description='English Word Segmentation')
 
@@ -128,6 +133,7 @@ def main(args=''):
 
     for line in args.infile:
         args.outfile.write(' '.join(segment(line)))
+        args.outfile.write(os.linesep)
 
 if __name__ == '__main__':
     main(sys.argv[1:])
