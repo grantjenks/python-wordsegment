@@ -40,10 +40,10 @@ Quickstart
 Installing WordSegment is simple with
 `pip <http://www.pip-installer.org/>`_::
 
-    > pip install wordsegment
+    $ pip install wordsegment
 
 You can access documentation in the interpreter with Python's built-in help
-function:
+function::
 
     >>> import wordsegment
     >>> help(wordsegment)
@@ -63,25 +63,19 @@ interface accepts two arguments: in-file and out-file. Lines from in-file are
 segmented iteratively, joined by a space, and written to out-file. Input and
 output default to stdin and stdout respectively.::
 
-    > echo thisisatest | python -m wordsegment
+    $ echo thisisatest | python -m wordsegment
     this is a test
 
-// todo: show score
-// todo: show divide
-// todo: show unigram_counts
-// todo: show digram_counts
 
 Reference and Indices
 ---------------------
 
 * `WordSegment Documentation`_
-* `WordSegment API Reference`_
 * `WordSegment at PyPI`_
 * `WordSegment at Github`_
 * `WordSegment Issue Tracker`_
 
 .. _`WordSegment Documentation`: http://www.grantjenks.com/docs/wordsegment/
-.. _`WordSegment API Reference`: http://www.grantjenks.com/docs/wordsegment/api.html
 .. _`WordSegment at PyPI`: https://pypi.python.org/pypi/wordsegment
 .. _`WordSegment at Github`: https://github.com/grantjenks/wordsegment
 .. _`WordSegment Issue Tracker`: https://github.com/grantjenks/wordsegment/issues

@@ -1,8 +1,8 @@
 English Word Segmentation in Python
 ===================================
 
-WordSegment is an :ref:`Apache2 Licensed <apache2>` module for English word
-segmentation, written in pure-Python, and based on a trillion-word corpus.
+WordSegment is an Apache2 licensed module for English word segmentation, written
+in pure-Python, and based on a trillion-word corpus.
 
 Based on code from the chapter "`Natural Language Corpus Data`_" by Peter Norvig
 from the book "`Beautiful Data`_" (Segaran and Hammerbacher, 2009).
@@ -24,29 +24,32 @@ Features
 
 - Pure-Python
 - Fully documented
-- 100% test coverage
+- 100% Test Coverage
 - Includes unigram and bigram data
 - Command line interface for batch processing
 - Easy to hack (e.g. different scoring, new data, different language)
 - Developed on Python 2.7
-- Tested on CPython 2.6, 2.7, 3.2, 3.3, 3.4 and PyPy 2.2
+- Tested on CPython 2.6, 2.7, 3.2, 3.3, 3.4 and PyPy 2.5+, PyPy3 2.4+
 
-User Guide
+Quickstart
 ----------
 
 Installing WordSegment is simple with
 `pip <http://www.pip-installer.org/>`_::
 
-    > pip install wordsegment
+    $ pip install wordsegment
 
 You can access documentation in the interpreter with Python's built-in help
-function:
+function::
 
     >>> import wordsegment
     >>> help(wordsegment)
 
-In your own Python programs, you'll mostly want to use :ref:`segment <segment>`
-to divide a phrase into a list of its parts:
+Tutorial
+--------
+
+In your own Python programs, you'll mostly want to use `segment` to divide a
+phrase into a list of its parts:
 
     >>> from wordsegment import segment
     >>> segment('thisisatest')
@@ -57,77 +60,36 @@ interface accepts two arguments: in-file and out-file. Lines from in-file are
 segmented iteratively, joined by a space, and written to out-file. Input and
 output default to stdin and stdout respectively.::
 
-    > echo thisisatest | python -m wordsegment
+    $ echo thisisatest | python -m wordsegment
     this is a test
 
-API Documentation
------------------
+// todo: show score
+// todo: show divide
+// todo: show clean
+// todo: show unigram_counts
+// todo: show bigram_counts
 
-.. _`segment`:
-
-.. function:: segment(text)
-
-    Return a list of words that is the best segmenation of `text`.
-
-.. function:: score(word, prev=None)
-
-    Score a `word` in the context of the previous word, `prev`.
-
-.. function:: divide(text, limit=24)
-
-    Yield (prefix, suffix) pairs from `text` with len(prefix) not
-    exceeding `limit`.
-
-.. data:: unigram_counts
-
-    Mapping of (unigram, count) pairs.
-    Loaded from the file 'unigrams.txt'.
-
-.. data:: bigram_counts
-
-    Mapping of (bigram, count) pairs.
-    Loaded from the file 'bigrams.txt'.
-
-Useful Links
-------------
-
-- `WordSegment Project @ GrantJenks.com`_
-- `WordSegment @ PyPI`_
-- `WordSegment @ Github`_
-- `Issue Tracker`_
-
-.. _`WordSegment Project @ GrantJenks.com`: http://www.grantjenks.com/blog/portfolio-post/english-word-segmentation-python/
-.. _`WordSegment @ PyPI`: https://pypi.python.org/pypi/wordsegment
-.. _`WordSegment @ Github`: https://github.com/grantjenks/wordsegment
-.. _`Issue Tracker`: https://github.com/grantjenks/wordsegment/issues
-
-Indices and Utilities
+Reference and Indices
 ---------------------
 
-* :ref:`genindex`
-* :ref:`modindex`
+.. toctree::
+
+   api
+   python-load-dict-fast-from-file
+
+* `WordSegment Documentation`_
+* `WordSegment at PyPI`_
+* `WordSegment at Github`_
+* `WordSegment Issue Tracker`_
 * :ref:`search`
+* :ref:`genindex`
 
-.. _`apache2`:
-
-Apache2 License
----------------
-
-A large number of open source projects you find today are `GPL Licensed`_.
-A project that is released as GPL cannot be used in any commercial product
-without the product itself also being offered as open source.
-
-The MIT, BSD, ISC, and Apache2 licenses are great alternatives to the GPL
-that allow your open-source software to be used freely in proprietary,
-closed-source software.
-
-SortedContainers is released under terms of `Apache2 License`_.
-
-.. _`GPL Licensed`: http://www.opensource.org/licenses/gpl-license.php
-.. _`Apache2 License`: http://opensource.org/licenses/Apache-2.0
-
+.. _`WordSegment Documentation`: http://www.grantjenks.com/docs/wordsegment/
+.. _`WordSegment at PyPI`: https://pypi.python.org/pypi/wordsegment
+.. _`WordSegment at Github`: https://github.com/grantjenks/wordsegment
+.. _`WordSegment Issue Tracker`: https://github.com/grantjenks/wordsegment/issues
 
 WordSegment License
 -------------------
 
-    .. include:: ../LICENSE
+.. include:: ../LICENSE

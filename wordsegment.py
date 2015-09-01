@@ -84,8 +84,8 @@ def score(word, prev=None):
             return score(word)
 
 def clean(text):
-    "Return `text` lower-cased and non-alpha characters removed."
-    alphabet = set('abcdefghijklmnopqrstuvwxyz')
+    "Return `text` lower-cased with non-alphanumeric characters removed."
+    alphabet = set('abcdefghijklmnopqrstuvwxyz0123456789')
     return ''.join(letter for letter in text.lower() if letter in alphabet)
 
 def segment(text):
@@ -93,7 +93,7 @@ def segment(text):
 
     memo = dict()
 
-    def search(text, prev='<S>'):
+    def search(text, prev='<s>'):
         if text == '':
             return 0.0, []
 
