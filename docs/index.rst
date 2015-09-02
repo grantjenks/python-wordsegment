@@ -1,8 +1,8 @@
 Python Word Segmentation
 ========================
 
-WordSegment is an Apache2 licensed module for English word segmentation, written
-in pure-Python, and based on a trillion-word corpus.
+Python WordSegment is an Apache2 licensed module for English word segmentation,
+written in pure-Python, and based on a trillion-word corpus.
 
 Based on code from the chapter "`Natural Language Corpus Data`_" by Peter Norvig
 from the book "`Beautiful Data`_" (Segaran and Hammerbacher, 2009).
@@ -49,7 +49,7 @@ Tutorial
 --------
 
 In your own Python programs, you'll mostly want to use `segment` to divide a
-phrase into a list of its parts:
+phrase into a list of its parts::
 
     >>> from wordsegment import segment
     >>> segment('thisisatest')
@@ -66,7 +66,7 @@ output default to stdin and stdout respectively. ::
 The maximum segmented word length is 24 characters. Neither the unigram nor
 bigram data contain words exceeding that length. The corpus also excludes
 punctuation and all letters have been lowercased. Before segmenting text,
-`clean` is called to transform the input to a canonical form:
+`clean` is called to transform the input to a canonical form::
 
     >>> from wordsegment import clean
     >>> clean('She said, "Python rocks!"')
@@ -75,7 +75,7 @@ punctuation and all letters have been lowercased. Before segmenting text,
     ['she', 'said', 'python', 'rocks']
 
 Sometimes its interesting to explore the unigram and bigram counts
-themselves. These are stored in Python dictionaries mapping word to count.
+themselves. These are stored in Python dictionaries mapping word to count. ::
 
     >>> import wordsegment as ws
     >>> ws.unigram_counts['the']
@@ -87,7 +87,7 @@ themselves. These are stored in Python dictionaries mapping word to count.
 
 Above we see that the spelling `gray` is more common than the spelling `grey`.
 
-Bigrams are joined by a space.
+Bigrams are joined by a space::
 
     >>> import heapq
     >>> from pprint import pprint
@@ -104,12 +104,15 @@ Bigrams are joined by a space.
      ('with the', 461331348.0),
      ('from the', 428303219.0)]
 
-Some bigrams begin with `<s>`. This is to indicate the start of a bigram.
+Some bigrams begin with `<s>`. This is to indicate the start of a bigram::
 
     >>> ws.bigram_counts['<s> where']
     15419048.0
     >>> ws.bigram_counts['<s> what']
     11779290.0
+
+The unigrams and bigrams data is stored in the `wordsegment_data` directory in
+the `unigrams.txt` and `bigrams.txt` files respectively.
 
 Reference and Indices
 ---------------------
