@@ -1,29 +1,35 @@
 WordSegment API Reference
 =========================
 
-- wordsegment.clean(text)
+.. py:function:: clean(text)
+   :module: wordsegment
 
     Return `text` lower-cased with non-alphanumeric characters removed.
 
-- wordsegment.divide(text, limit=24)
+.. py:function:: divide(text, limit=24)
+   :module: wordsegment
 
     Yield (prefix, suffix) pairs from `text` with len(prefix) not
     exceeding `limit`.
 
-- wordsegment.score(word, prev=None)
+.. py:function:: score(word, prev=None)
+   :module: wordsegment
 
     Score a `word` in the context of the previous word, `prev`.
 
-- wordsegment.segment(text)
+.. py:function:: segment(text)
+   :module: wordsegment
 
     Return a list of words that is the best segmenation of `text`.
 
-- wordsegment.unigram_counts
+.. py:data:: unigram_counts
+   :module: wordsegment
 
     Mapping of (unigram, count) pairs.
-    Loaded from the file 'unigrams.txt'.
+    Loaded from the file 'wordsegment_data/unigrams.txt'.
 
-- wordsegment.bigram_counts
+.. py:data:: bigram_counts
+   :module: wordsegment
 
     Mapping of (bigram, count) pairs.
-    Loaded from the file 'bigrams.txt'.
+    Loaded from the file 'wordsegment_data/bigrams.txt'.
