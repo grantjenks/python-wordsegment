@@ -120,6 +120,7 @@ Reference and Indices
 .. toctree::
 
    api
+   using-a-different-corpus
    python-load-dict-fast-from-file
 
 * `WordSegment Documentation`_
