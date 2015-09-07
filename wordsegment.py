@@ -53,6 +53,8 @@ def divide(text, limit=24):
     for pos in range(1, min(len(text), limit) + 1):
         yield (text[:pos], text[pos:])
 
+TOTAL = 1024908267229.0
+
 def score(word, prev=None):
     "Score a `word` in the context of the previous word, `prev`."
 
@@ -61,12 +63,12 @@ def score(word, prev=None):
 
             # Probability of the given word.
 
-            return unigram_counts[word] / 1024908267229.0
+            return unigram_counts[word] / TOTAL
         else:
             # Penalize words not found in the unigrams according
             # to their length, a crucial heuristic.
 
-            return 10.0 / (1024908267229.0 * 10 ** len(word))
+            return 10.0 / (TOTAL * 10 ** len(word))
     else:
         bigram = '{0} {1}'.format(prev, word)
 
@@ -77,7 +79,7 @@ def score(word, prev=None):
             # not a probability distribution but it works well in
             # practice.
 
-            return bigram_counts[bigram] / 1024908267229.0 / score(prev)
+            return bigram_counts[bigram] / TOTAL / score(prev)
         else:
             # Fall back to using the unigram probability.
 
