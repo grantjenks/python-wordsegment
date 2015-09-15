@@ -141,8 +141,8 @@ if __name__ == '__main__':
     main(sys.argv[1:])
 
 __title__ = 'wordsegment'
-__version__ = '0.5.3'
-__build__ = 0x000503
+__version__ = '0.6.1'
+__build__ = 0x000601
 __author__ = 'Grant Jenks'
 __license__ = 'Apache 2.0'
 __copyright__ = 'Copyright 2015 Grant Jenks'
