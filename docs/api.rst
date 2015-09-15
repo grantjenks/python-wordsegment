@@ -32,4 +32,12 @@ WordSegment API Reference
    :module: wordsegment
 
     Mapping of (bigram, count) pairs.
+    Bigram keys are joined by a space.
     Loaded from the file 'wordsegment_data/bigrams.txt'.
+
+.. py:data:: TOTAL
+   :module: wordsegment
+
+    Total number of unigrams in the corpus.
+    Need not match `sum(unigram_counts.values())`.
+    Defaults to 1,024,908,267,229.
