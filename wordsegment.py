@@ -32,6 +32,9 @@ from os.path import join, dirname, realpath
 from math import log10
 from functools import wraps
 
+
+ALPHABET = set('abcdefghijklmnopqrstuvwxyz0123456789')
+
 if sys.hexversion < 0x03000000:
     range = xrange
 
@@ -87,8 +90,7 @@ def score(word, prev=None):
 
 def clean(text):
     "Return `text` lower-cased with non-alphanumeric characters removed."
-    alphabet = set('abcdefghijklmnopqrstuvwxyz0123456789')
-    return ''.join(letter for letter in text.lower() if letter in alphabet)
+    return ''.join(letter for letter in text.lower() if letter in ALPHABET)
 
 def segment(text):
     "Return a list of words that is the best segmenation of `text`."
