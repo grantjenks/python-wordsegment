@@ -28,6 +28,7 @@ Original Copyright (c) 2008-2009 by Peter Norvig
 """
 
 import sys
+import codecs
 from os.path import join, dirname, realpath
 from math import log10
 from functools import wraps
@@ -40,7 +41,7 @@ if sys.hexversion < 0x03000000:
 
 def parse_file(filename):
     "Read `filename` and parse tab-separated file of (word, count) pairs."
-    with open(filename) as fptr:
+    with codecs.open(filename, 'r', 'utf-8') as fptr:
         lines = (line.split('\t') for line in fptr)
         return dict((word, float(number)) for word, number in lines)
 
