@@ -28,6 +28,7 @@ Original Copyright (c) 2008-2009 by Peter Norvig
 """
 
 import sys
+import codecs
 from os.path import join, dirname, realpath
 from math import log10
 from functools import wraps
@@ -40,13 +41,13 @@ if sys.hexversion < 0x03000000:
 
 def parse_file(filename):
     "Read `filename` and parse tab-separated file of (word, count) pairs."
-    with open(filename) as fptr:
+    with codecs.open(filename, 'r', 'utf-8') as fptr:
         lines = (line.split('\t') for line in fptr)
         return dict((word, float(number)) for word, number in lines)
 
 basepath = join(dirname(realpath(__file__)), 'wordsegment_data')
-unigram_counts = parse_file(join(basepath, 'unigrams.txt'))
-bigram_counts = parse_file(join(basepath, 'bigrams.txt'))
+unigram_counts = None
+bigram_counts = None
 
 def divide(text, limit=24):
     """
@@ -60,6 +61,13 @@ TOTAL = 1024908267229.0
 
 def score(word, prev=None):
     "Score a `word` in the context of the previous word, `prev`."
+    global unigram_counts, bigram_counts
+
+    if unigram_counts is None:
+        unigram_counts = parse_file(join(basepath, 'unigrams.txt'))
+
+    if bigram_counts is None:
+        bigram_counts = parse_file(join(basepath, 'bigrams.txt'))
 
     if prev is None:
         if word in unigram_counts:
