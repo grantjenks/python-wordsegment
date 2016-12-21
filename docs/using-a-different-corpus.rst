@@ -45,12 +45,12 @@ dictionaries: ``wordsegment.clean``, ``wordsegment.BIGRAMS`` and
 .. code:: python
 
     print wordsegment.UNIGRAMS.items()[:3]
-    print wordsegment.BIGRAMS.items()[:3]
+    print wordsegment.BIGRAMS.items()[:2]
 
 .. parsed-literal::
 
     [('biennials', 37548.0), ('verplank', 48349.0), ('tsukino', 19771.0)]
-    [('personal effects', 151369.0), ('basic training', 294085.0), ('it absolutely', 130505.0)]
+    [('personal effects', 151369.0), ('basic training', 294085.0)]
 
 Ok, so ``wordsegment.UNIGRAMS`` is just a dictionary mapping
 unigrams to their counts. Let's write a method to tokenize our text.

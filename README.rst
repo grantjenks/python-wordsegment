@@ -1,9 +1,6 @@
 Python Word Segmentation
 ========================
 
-.. image:: https://api.travis-ci.org/grantjenks/wordsegment.svg
-    :target: http://www.grantjenks.com/blog/portfolio-post/english-word-segmentation-python/
-
 `WordSegment`_ is an Apache2 licensed module for English word
 segmentation, written in pure-Python, and based on a trillion-word corpus.
 
@@ -34,6 +31,9 @@ Features
 - Easy to hack (e.g. different scoring, new data, different language)
 - Developed on Python 2.7
 - Tested on CPython 2.6, 2.7, 3.2, 3.3, 3.4 and PyPy 2.5+, PyPy3 2.4+
+
+.. image:: https://api.travis-ci.org/grantjenks/wordsegment.svg
+    :target: http://www.grantjenks.com/docs/wordsegment/
 
 Quickstart
 ----------
@@ -135,7 +135,7 @@ Reference and Indices
 WordSegment License
 -------------------
 
-Copyright 2015 Grant Jenks
+Copyright 2016 Grant Jenks
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
