@@ -1,6 +1,7 @@
-import sys
+import io
 from setuptools import setup
 from setuptools.command.test import test as TestCommand
+import sys
 
 import wordsegment
 
@@ -14,11 +15,8 @@ class Tox(TestCommand):
         errno = tox.cmdline(self.test_args)
         sys.exit(errno)
 
-with open('README.rst') as fptr:
-    readme = fptr.read()
-
-with open('LICENSE') as fptr:
-    license = fptr.read()
+with io.open('README.rst', encoding='UTF-8') as reader:
+    readme = reader.read()
 
 setup(
     name='wordsegment',
@@ -28,18 +26,18 @@ setup(
     author='Grant Jenks',
     author_email='contact@grantjenks.com',
     url='http://www.grantjenks.com/docs/wordsegment/',
-    license=license,
     py_modules=['wordsegment'],
     packages=['wordsegment_data'],
     package_data={'wordsegment_data': ['*.txt']},
     tests_require=['tox'],
     cmdclass={'test': Tox},
-    platforms='any',
+    license='Apache 2.0',
+    install_requires=[],
     classifiers=[
         'Development Status :: 4 - Beta',
         'Intended Audience :: Developers',
-        'Natural Language :: English',
         'License :: OSI Approved :: Apache Software License',
+        'Natural Language :: English',
         'Programming Language :: Python',
         'Programming Language :: Python :: 2',
         'Programming Language :: Python :: 2.6',
