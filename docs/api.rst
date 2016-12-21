@@ -12,6 +12,11 @@ WordSegment API Reference
     Yield (prefix, suffix) pairs from `text` with len(prefix) not
     exceeding `limit`.
 
+.. py:function:: load()
+   :module: wordsegment
+
+    Load unigram and bigram counts from disk.
+
 .. py:function:: score(word, prev=None)
    :module: wordsegment
 
@@ -22,13 +27,13 @@ WordSegment API Reference
 
     Return a list of words that is the best segmenation of `text`.
 
-.. py:data:: unigram_counts
+.. py:data:: UNIGRAMS
    :module: wordsegment
 
     Mapping of (unigram, count) pairs.
     Loaded from the file 'wordsegment_data/unigrams.txt'.
 
-.. py:data:: bigram_counts
+.. py:data:: BIGRAMS
    :module: wordsegment
 
     Mapping of (bigram, count) pairs.
@@ -39,5 +44,5 @@ WordSegment API Reference
    :module: wordsegment
 
     Total number of unigrams in the corpus.
-    Need not match `sum(unigram_counts.values())`.
+    Need not match `sum(UNIGRAMS.values())`.
     Defaults to 1,024,908,267,229.

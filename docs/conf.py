@@ -14,7 +14,6 @@
 
 import sys
 import os
-import shlex
 
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
@@ -51,8 +50,8 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'WordSegment'
-copyright = u'2015, Grant Jenks'
+project = u'Word Segment'
+copyright = u'2016, Grant Jenks'
 author = u'Grant Jenks'
 
 # The version info for the project you're documenting, acts as replacement for
@@ -128,6 +127,7 @@ html_theme_options = {
     'show_related': True,
     'github_user': 'grantjenks',
     'github_repo': 'wordsegment',
+    'github_type': 'star',
 }
 
 # Add any paths that contain custom themes here, relative to this directory.

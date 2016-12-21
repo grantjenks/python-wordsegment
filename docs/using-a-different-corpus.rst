@@ -1,4 +1,3 @@
-
 Using a Different Corpus
 ========================
 
@@ -22,16 +21,14 @@ Jane Austen's *Pride and Prejudice*.
     
     print len(text)
 
-
 .. parsed-literal::
 
     717573
 
-
 Great. We've got a new corpus for ``wordsegment``. Now let's look at
 what parts of the API we need to change. There's one function and two
-dictionaries: ``wordsegment.clean``, ``wordsegment.bigram_counts`` and
-``wordsegment.unigram_counts``. We'll work on these in reverse.
+dictionaries: ``wordsegment.clean``, ``wordsegment.BIGRAMS`` and
+``wordsegment.UNIGRAMS``. We'll work on these in reverse.
 
 .. code:: python
 
@@ -39,27 +36,23 @@ dictionaries: ``wordsegment.clean``, ``wordsegment.bigram_counts`` and
 
 .. code:: python
 
-    print type(wordsegment.unigram_counts), type(wordsegment.bigram_counts)
-
+    print type(wordsegment.UNIGRAMS), type(wordsegment.BIGRAMS)
 
 .. parsed-literal::
 
     <type 'dict'> <type 'dict'>
 
-
 .. code:: python
 
-    print wordsegment.unigram_counts.items()[:3]
-    print wordsegment.bigram_counts.items()[:3]
-
+    print wordsegment.UNIGRAMS.items()[:3]
+    print wordsegment.BIGRAMS.items()[:3]
 
 .. parsed-literal::
 
     [('biennials', 37548.0), ('verplank', 48349.0), ('tsukino', 19771.0)]
     [('personal effects', 151369.0), ('basic training', 294085.0), ('it absolutely', 130505.0)]
 
-
-Ok, so ``wordsegment.unigram_counts`` is just a dictionary mapping
+Ok, so ``wordsegment.UNIGRAMS`` is just a dictionary mapping
 unigrams to their counts. Let's write a method to tokenize our text.
 
 .. code:: python
@@ -72,11 +65,9 @@ unigrams to their counts. Let's write a method to tokenize our text.
     
     print list(tokenize("Wait, what did you say?"))
 
-
 .. parsed-literal::
 
     ['Wait', 'what', 'did', 'you', 'say']
-
 
 Now we'll build our dictionaries.
 
@@ -84,7 +75,7 @@ Now we'll build our dictionaries.
 
     from collections import Counter
     
-    wordsegment.unigram_counts = Counter(tokenize(text))
+    wordsegment.UNIGRAMS = Counter(tokenize(text))
     
     def pairs(iterable):
         iterator = iter(iterable)
@@ -94,7 +85,7 @@ Now we'll build our dictionaries.
             yield ' '.join(values)
             del values[0]
     
-    wordsegment.bigram_counts = Counter(pairs(tokenize(text)))
+    wordsegment.BIGRAMS = Counter(pairs(tokenize(text)))
 
 That's it.
 
@@ -115,14 +106,9 @@ input to ``segment``.
 
     wordsegment.segment('wantofawife')
 
-
-
-
 .. parsed-literal::
 
     ['want', 'of', 'a', 'wife']
-
-
 
 If you find this behaves poorly then you may need to change the
 ``wordsegment.TOTAL`` variable to reflect the total of all unigrams. In
@@ -130,9 +116,8 @@ our case that's simply:
 
 .. code:: python
 
-    wordsegment.TOTAL = float(sum(wordsegment.unigram_counts.values()))
+    wordsegment.TOTAL = float(sum(wordsegment.UNIGRAMS.values()))
 
 WordSegment doesn't require any fancy machine learning training
 algorithms. Simply update the unigram and bigram count dictionaries and
 you're ready to go.
-

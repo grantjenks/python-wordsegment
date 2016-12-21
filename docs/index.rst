@@ -78,11 +78,12 @@ Sometimes its interesting to explore the unigram and bigram counts
 themselves. These are stored in Python dictionaries mapping word to count. ::
 
     >>> import wordsegment as ws
-    >>> ws.unigram_counts['the']
+    >>> ws.load()
+    >>> ws.UNIGRAMS['the']
     23135851162.0
-    >>> ws.unigram_counts['gray']
+    >>> ws.UNIGRAMS['gray']
     21424658.0
-    >>> ws.unigram_counts['grey']
+    >>> ws.UNIGRAMS['grey']
     18276942.0
 
 Above we see that the spelling `gray` is more common than the spelling `grey`.
@@ -92,7 +93,7 @@ Bigrams are joined by a space::
     >>> import heapq
     >>> from pprint import pprint
     >>> from operator import itemgetter
-    >>> pprint(heapq.nlargest(10, ws.bigram_counts.items(), itemgetter(1)))
+    >>> pprint(heapq.nlargest(10, ws.BIGRAMS.items(), itemgetter(1)))
     [('of the', 2766332391.0),
      ('in the', 1628795324.0),
      ('to the', 1139248999.0),
@@ -106,9 +107,9 @@ Bigrams are joined by a space::
 
 Some bigrams begin with `<s>`. This is to indicate the start of a bigram::
 
-    >>> ws.bigram_counts['<s> where']
+    >>> ws.BIGRAMS['<s> where']
     15419048.0
-    >>> ws.bigram_counts['<s> what']
+    >>> ws.BIGRAMS['<s> what']
     11779290.0
 
 The unigrams and bigrams data is stored in the `wordsegment_data` directory in
