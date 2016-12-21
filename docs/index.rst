@@ -4,15 +4,15 @@ Python Word Segmentation
 Python WordSegment is an Apache2 licensed module for English word segmentation,
 written in pure-Python, and based on a trillion-word corpus.
 
-Based on code from the chapter "`Natural Language Corpus Data`_" by Peter Norvig
-from the book "`Beautiful Data`_" (Segaran and Hammerbacher, 2009).
+Based on code from the chapter "`Natural Language Corpus Data`_" by Peter
+Norvig from the book "`Beautiful Data`_" (Segaran and Hammerbacher, 2009).
 
-Data files are derived from the `Google Web Trillion Word Corpus`_, as described
-by Thorsten Brants and Alex Franz, and `distributed`_ by the Linguistic Data
-Consortium. This module contains only a subset of that data. The unigram data
-includes only the most common 333,000 words. Similarly, bigram data includes
-only the most common 250,000 phrases. Every word and phrase is lowercased with
-punctuation removed.
+Data files are derived from the `Google Web Trillion Word Corpus`_, as
+described by Thorsten Brants and Alex Franz, and `distributed`_ by the
+Linguistic Data Consortium. This module contains only a subset of that
+data. The unigram data includes only the most common 333,000 words. Similarly,
+bigram data includes only the most common 250,000 phrases. Every word and
+phrase is lowercased with punctuation removed.
 
 .. _`Natural Language Corpus Data`: http://norvig.com/ngrams/
 .. _`Beautiful Data`: http://oreilly.com/catalog/9780596157111/

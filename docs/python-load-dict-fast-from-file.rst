@@ -45,7 +45,7 @@ platform.
     print subprocess.check_output([
         '/usr/sbin/sysctl', '-n', 'machdep.cpu.brand_string'
     ])
-    
+
     import sys
     print sys.version
 
@@ -53,8 +53,8 @@ platform.
 .. parsed-literal::
 
     Intel(R) Core(TM) i7-4960HQ CPU @ 2.60GHz
-    
-    2.7.10 (default, May 25 2015, 13:06:17) 
+
+    2.7.10 (default, May 25 2015, 13:06:17)
     [GCC 4.2.1 Compatible Apple LLVM 6.0 (clang-600.0.56)]
 
 
@@ -204,10 +204,10 @@ two.
         pairs = [line.split('\t') for line in reader]
         words = [pair[0] for pair in pairs]
         counts = [float(pair[1]) for pair in pairs]
-        
+
         with open('words.txt', 'wb') as writer:
             writer.write('\n'.join(words))
-            
+
         from array import array
         values = array('d')
         values.fromlist(counts)
@@ -262,4 +262,3 @@ I also tried formatting the ``dict`` in a Python module which would be
 parsed on import. This was actually a little slower than the initial
 code. My guess is the Python interpreter is doing roughly the same
 thing.
-

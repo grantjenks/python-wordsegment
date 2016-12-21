@@ -14,11 +14,11 @@ Jane Austen's *Pride and Prejudice*.
 .. code:: python
 
     import requests
-    
+
     response = requests.get('https://www.gutenberg.org/ebooks/1342.txt.utf-8')
-    
+
     text = response.text
-    
+
     print len(text)
 
 .. parsed-literal::
@@ -58,11 +58,11 @@ unigrams to their counts. Let's write a method to tokenize our text.
 .. code:: python
 
     import re
-    
+
     def tokenize(text):
         pattern = re.compile('[a-zA-Z]+')
         return (match.group(0) for match in pattern.finditer(text))
-    
+
     print list(tokenize("Wait, what did you say?"))
 
 .. parsed-literal::
@@ -74,9 +74,9 @@ Now we'll build our dictionaries.
 .. code:: python
 
     from collections import Counter
-    
+
     wordsegment.UNIGRAMS = Counter(tokenize(text))
-    
+
     def pairs(iterable):
         iterator = iter(iterable)
         values = [next(iterator)]
@@ -84,7 +84,7 @@ Now we'll build our dictionaries.
             values.append(value)
             yield ' '.join(values)
             del values[0]
-    
+
     wordsegment.BIGRAMS = Counter(pairs(tokenize(text)))
 
 That's it.
@@ -99,7 +99,7 @@ input to ``segment``.
 
     def identity(value):
         return value
-    
+
     wordsegment.clean = identity
 
 .. code:: python
