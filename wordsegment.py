@@ -121,7 +121,7 @@ def segment(text, limit = 400):
     while len(next_text) > limit:
         current_text = next_text[:limit]
         next_text = next_text[limit:]
-    	_, result_words = search(current_text)
+        _, result_words = search(current_text)
         word_list.extend(result_words)
         # Append last 5 words for resegment 
         # To resolve segmention problem in some cases
