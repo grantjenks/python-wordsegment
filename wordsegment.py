@@ -117,16 +117,16 @@ def segment(text, limit = 400):
         return max(candidates())
 
     word_list = list() 
-    next_text = text
+    next_text = clean(text)
     while len(next_text) > limit:
 	current_text = next_text[:limit]
 	next_text = next_text[limit:]
-    	_, result_words = search(clean(current_text))
+    	_, result_words = search(current_text)
 	word_list.extend(result_words)
 	next_text = ''.join([word_list[i] for i in xrange(-5, 0)]) + next_text
 	word_list = word_list[:-5]
 
-    _, result_words = search(clean(next_text))
+    _, result_words = search(next_text)
     word_list.extend(result_words)
     return word_list
 
