@@ -123,6 +123,8 @@ def segment(text, limit = 400):
 	next_text = next_text[limit:]
     	_, result_words = search(current_text)
 	word_list.extend(result_words)
+	# Append last 5 words for resegment 
+	# To resolve segmention problem in some cases
 	next_text = ''.join([word_list[i] for i in xrange(-5, 0)]) + next_text
 	word_list = word_list[:-5]
 
