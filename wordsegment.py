@@ -92,7 +92,7 @@ def score(word, prev=None):
 
             return score(word)
 
-def segment(text):
+def segment(text, limit = 400):
     "Return a list of words that is the best segmenation of `text`."
 
     memo = dict()
@@ -116,9 +116,19 @@ def segment(text):
 
         return max(candidates())
 
-    _, result_words = search(clean(text))
+    word_list = list() 
+    next_text = text
+    while len(next_text) > limit:
+	current_text = next_text[:limit]
+	next_text = next_text[limit:]
+    	_, result_words = search(clean(current_text))
+	word_list.extend(result_words)
+	next_text = ''.join([word_list[i] for i in xrange(-5, 0)]) + next_text
+	word_list = word_list[:-5]
 
-    return result_words
+    _, result_words = search(clean(next_text))
+    word_list.extend(result_words)
+    return word_list
 
 def main(args=()):
     """Command-line entry-point. Parses `args` into in-file and out-file then
