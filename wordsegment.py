@@ -92,8 +92,8 @@ def score(word, prev=None):
 
             return score(word)
 
-def segment(text):
-    "Return a list of words that is the best segmenation of `text`."
+def isegment(text):
+    "Return iterator of words that is the best segmenation of `text`."
 
     memo = dict()
 
@@ -116,9 +116,31 @@ def segment(text):
 
         return max(candidates())
 
-    _, result_words = search(clean(text))
+    # Avoid recursion limit issues by dividing text into chunks, segmenting
+    # those chunks and combining the results together. Chunks may divide words
+    # in the middle so prefix chunks with the last five words of the previous
+    # result.
 
-    return result_words
+    clean_text = clean(text)
+    size = 250
+    prefix = ''
+
+    for offset in range(0, len(clean_text), size):
+        chunk = clean_text[offset:(offset + size)]
+        _, chunk_words = search(prefix + chunk)
+        prefix = ''.join(chunk_words[-5:])
+        del chunk_words[-5:]
+        for word in chunk_words:
+            yield word
+
+    _, prefix_words = search(prefix)
+
+    for word in prefix_words:
+        yield word
+
+def segment(text):
+    "Return a list of words that is the best segmenation of `text`."
+    return list(isegment(text))
 
 def main(args=()):
     """Command-line entry-point. Parses `args` into in-file and out-file then

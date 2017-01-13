@@ -22,6 +22,11 @@ WordSegment API Reference
 
     Score a `word` in the context of the previous word, `prev`.
 
+.. py:function:: isegment(text)
+   :module: wordsegment
+
+    Return iterator of words that is the best segmenation of `text`.
+
 .. py:function:: segment(text)
    :module: wordsegment
 
