@@ -48,11 +48,23 @@ def divide(text, limit=24):
     for pos in range(1, min(len(text), limit) + 1):
         yield (text[:pos], text[pos:])
 
-def load():
-    "Load unigram and bigram counts from disk."
-    global UNIGRAMS, BIGRAMS  # pylint: disable=global-statement
-    UNIGRAMS = parse_file(op.join(DATADIR, 'unigrams.txt'))
-    BIGRAMS = parse_file(op.join(DATADIR, 'bigrams.txt'))
+def load(filename_unigrams=None, filename_bigrams=None, compute_unigram_total=False):
+    """Load unigram and bigram counts from disk.
+    If file names for unigrams and bigrams are specified,
+    then load the data from those files. Otherwise, use
+    the default values. 
+    If compute_unigram_total is True, the total of all unigrams will be computed 
+    after the load. Otherwise, the default value will be used.
+    """
+    global UNIGRAMS, BIGRAMS, TOTAL  # pylint: disable=global-statement
+    if filename_unigrams is None:
+        filename_unigrams= op.join(DATADIR, 'unigrams.txt')
+    UNIGRAMS = parse_file(filename_unigrams)
+    if filename_bigrams is None:
+        filename_bigrams = op.join(DATADIR, 'bigrams.txt')
+    BIGRAMS = parse_file(filename_bigrams)
+    if compute_unigram_total:
+        TOTAL = float(sum(UNIGRAMS.values()))
 
 def parse_file(filename):
     "Read `filename` and parse tab-separated file of (word, count) pairs."
