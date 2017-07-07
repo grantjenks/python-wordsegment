@@ -129,8 +129,8 @@ Reference and Indices
 
 .. _`WordSegment Documentation`: http://www.grantjenks.com/docs/wordsegment/
 .. _`WordSegment at PyPI`: https://pypi.python.org/pypi/wordsegment
-.. _`WordSegment at Github`: https://github.com/grantjenks/wordsegment
-.. _`WordSegment Issue Tracker`: https://github.com/grantjenks/wordsegment/issues
+.. _`WordSegment at Github`: https://github.com/grantjenks/python-wordsegment
+.. _`WordSegment Issue Tracker`: https://github.com/grantjenks/python-wordsegment/issues
 
 WordSegment License
 -------------------
