@@ -1,4 +1,3 @@
 include README.rst
 include LICENSE
-include unigrams.txt
-include bigrams.txt
+include wordsegment/*.txt
