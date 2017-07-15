@@ -26,13 +26,11 @@ setup(
     author='Grant Jenks',
     author_email='contact@grantjenks.com',
     url='http://www.grantjenks.com/docs/wordsegment/',
-    py_modules=['wordsegment'],
-    packages=['wordsegment_data'],
-    package_data={'wordsegment_data': ['*.txt']},
+    packages=['wordsegment'],
+    include_package_data=True,
     tests_require=['tox'],
     cmdclass={'test': Tox},
     license='Apache 2.0',
-    install_requires=[],
     classifiers=[
         'Development Status :: 4 - Beta',
         'Intended Audience :: Developers',
@@ -47,5 +45,6 @@ setup(
         'Programming Language :: Python :: 3.3',
         'Programming Language :: Python :: 3.4',
         'Programming Language :: Python :: 3.5',
+        'Programming Language :: Python :: 3.6',
     ],
 )
