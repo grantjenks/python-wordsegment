@@ -202,6 +202,7 @@ if __name__ == '__main__':
     main(sys.argv[1:])
 
 
+__all__ = ['Segmenter', 'segment', 'isegment', 'load', 'main']
 __title__ = 'wordsegment'
 __version__ = '1.0.0'
 __build__ = 0x010000
