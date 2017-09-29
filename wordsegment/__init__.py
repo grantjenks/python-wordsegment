@@ -199,9 +199,10 @@ def main(arguments=()):
                         default=sys.stdout)
 
     streams = parser.parse_args(arguments)
+    load()
 
-    for line in streams.infile:
-        streams.outfile.write(' '.join(segment(line)))
+    for line in iter(streams.infile.readline, ''):
+        streams.outfile.write(' '.join(segment(line.strip())))
         streams.outfile.write(os.linesep)
 
 

@@ -71,6 +71,24 @@ out-file. Input and output default to stdin and stdout respectively. ::
     $ echo thisisatest | python -m wordsegment
     this is a test
 
+If you want to run `WordSegment`_ as a kind of server process then use Python's
+``-u`` option for unbuffered output. You can also set ``PYTHONUNBUFFERED=1`` in
+the environment. ::
+
+    >>> import subprocess as sp
+    >>> wordsegment = sp.Popen(
+            ['python', '-um', 'wordsegment'],
+            stdin=sp.PIPE, stdout=sp.PIPE, stderr=sp.STDOUT)
+    >>> wordsegment.stdin.write('thisisatest\n')
+    >>> wordsegment.stdout.readline()
+    'this is a test\n'
+    >>> wordsegment.stdin.write('workswithotherlanguages\n')
+    >>> wordsegment.stdout.readline()
+    'works with other languages\n'
+    >>> wordsegment.stdin.close()
+    >>> wordsegment.wait()  # Process exit code.
+    0
+
 The maximum segmented word length is 24 characters. Neither the unigram nor
 bigram data contain words exceeding that length. The corpus also excludes
 punctuation and all letters have been lowercased. Before segmenting text,
