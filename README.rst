@@ -30,7 +30,7 @@ Features
 - Command line interface for batch processing
 - Easy to hack (e.g. different scoring, new data, different language)
 - Developed on Python 2.7
-- Tested on CPython 2.6, 2.7, 3.2, 3.3, 3.4 and PyPy 2.5+, PyPy3 2.4+
+- Tested on CPython 2.6, 2.7, 3.2, 3.3, 3.4, 3.5, 3.6 and PyPy, PyPy3
 
 .. image:: https://api.travis-ci.org/grantjenks/wordsegment.svg
     :target: http://www.grantjenks.com/docs/wordsegment/
@@ -55,9 +55,13 @@ Tutorial
 In your own Python programs, you'll mostly want to use `segment` to divide a
 phrase into a list of its parts::
 
-    >>> from wordsegment import segment
+    >>> from wordsegment import load, segment
+    >>> load()
     >>> segment('thisisatest')
     ['this', 'is', 'a', 'test']
+
+The `load` function reads and parses the unigrams and bigrams data from
+disk. Loading the data only needs to be done once.
 
 WordSegment also provides a command-line interface for batch processing. This
 interface accepts two arguments: in-file and out-file. Lines from in-file are
@@ -116,7 +120,7 @@ Some bigrams begin with `<s>`. This is to indicate the start of a bigram::
     >>> ws.BIGRAMS['<s> what']
     11779290.0
 
-The unigrams and bigrams data is stored in the `wordsegment_data` directory in
+The unigrams and bigrams data is stored in the `wordsegment` directory in
 the `unigrams.txt` and `bigrams.txt` files respectively.
 
 Reference and Indices
@@ -135,7 +139,7 @@ Reference and Indices
 WordSegment License
 -------------------
 
-Copyright 2016 Grant Jenks
+Copyright 2017 Grant Jenks
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
