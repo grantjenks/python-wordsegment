@@ -1,3 +1,5 @@
+"WordSegment CLI"
+
 import sys
 from . import main
 

@@ -86,26 +86,26 @@ class Segmenter(object):
                 # Probability of the given word.
 
                 return unigrams[word] / total
-            else:
-                # Penalize words not found in the unigrams according
-                # to their length, a crucial heuristic.
 
-                return 10.0 / (total * 10 ** len(word))
-        else:
-            bigram = '{0} {1}'.format(previous, word)
+            # Penalize words not found in the unigrams according
+            # to their length, a crucial heuristic.
 
-            if bigram in bigrams and previous in unigrams:
+            return 10.0 / (total * 10 ** len(word))
 
-                # Conditional probability of the word given the previous
-                # word. The technical name is *stupid backoff* and it's
-                # not a probability distribution but it works well in
-                # practice.
+        bigram = '{0} {1}'.format(previous, word)
 
-                return bigrams[bigram] / total / self.score(previous)
-            else:
-                # Fall back to using the unigram probability.
+        if bigram in bigrams and previous in unigrams:
 
-                return self.score(word)
+            # Conditional probability of the word given the previous
+            # word. The technical name is *stupid backoff* and it's
+            # not a probability distribution but it works well in
+            # practice.
+
+            return bigrams[bigram] / total / self.score(previous)
+
+        # Fall back to using the unigram probability.
+
+        return self.score(word)
 
 
     def isegment(self, text):
@@ -174,10 +174,10 @@ class Segmenter(object):
         return ''.join(letters)
 
 
-_segmenter = Segmenter()
-load = _segmenter.load
-isegment = _segmenter.isegment
-segment = _segmenter.segment
+_segmenter = Segmenter()        # pylint: disable=invalid-name
+load = _segmenter.load          # pylint: disable=invalid-name
+isegment = _segmenter.isegment  # pylint: disable=invalid-name
+segment = _segmenter.segment    # pylint: disable=invalid-name
 UNIGRAMS = _segmenter.unigrams
 BIGRAMS = _segmenter.bigrams
 
