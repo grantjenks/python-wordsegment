@@ -33,6 +33,7 @@ dictionaries: ``wordsegment.clean``, ``wordsegment.BIGRAMS`` and
 .. code:: python
 
     import wordsegment
+    wordsegment.load()
 
 .. code:: python
 
@@ -75,7 +76,8 @@ Now we'll build our dictionaries.
 
     from collections import Counter
 
-    wordsegment.UNIGRAMS = Counter(tokenize(text))
+    wordsegment.UNIGRAMS.clear()
+    wordsegment.UNIGRAMS.update(Counter(tokenize(text)))
 
     def pairs(iterable):
         iterator = iter(iterable)
@@ -85,7 +87,8 @@ Now we'll build our dictionaries.
             yield ' '.join(values)
             del values[0]
 
-    wordsegment.BIGRAMS = Counter(pairs(tokenize(text)))
+    wordsegment.BIGRAMS.clear()
+    wordsegment.BIGRAMS.update(Counter(pairs(tokenize(text))))
 
 That's it.
 
@@ -97,10 +100,12 @@ input to ``segment``.
 
 .. code:: python
 
+    from wordsegment import _segmenter
+
     def identity(value):
         return value
 
-    wordsegment.clean = identity
+    _segmenter.clean = identity
 
 .. code:: python
 
@@ -111,12 +116,12 @@ input to ``segment``.
     ['want', 'of', 'a', 'wife']
 
 If you find this behaves poorly then you may need to change the
-``wordsegment.TOTAL`` variable to reflect the total of all unigrams. In
+``_segmenter.total`` variable to reflect the total of all unigrams. In
 our case that's simply:
 
 .. code:: python
 
-    wordsegment.TOTAL = float(sum(wordsegment.UNIGRAMS.values()))
+    _segmenter.total = float(sum(wordsegment.UNIGRAMS.values()))
 
 WordSegment doesn't require any fancy machine learning training
 algorithms. Simply update the unigram and bigram count dictionaries and

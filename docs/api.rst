@@ -1,12 +1,16 @@
 WordSegment API Reference
 =========================
 
+`WordSegment`_ API reference.
+
+.. _`WordSegment`: http://www.grantjenks.com/docs/wordsegment/
+
 .. py:function:: clean(text)
    :module: wordsegment
 
     Return `text` lower-cased with non-alphanumeric characters removed.
 
-.. py:function:: divide(text, limit=24)
+.. py:function:: divide(text)
    :module: wordsegment
 
     Yield (prefix, suffix) pairs from `text` with len(prefix) not
@@ -36,18 +40,11 @@ WordSegment API Reference
    :module: wordsegment
 
     Mapping of (unigram, count) pairs.
-    Loaded from the file 'wordsegment_data/unigrams.txt'.
+    Loaded from the file 'wordsegment/unigrams.txt'.
 
 .. py:data:: BIGRAMS
    :module: wordsegment
 
     Mapping of (bigram, count) pairs.
     Bigram keys are joined by a space.
-    Loaded from the file 'wordsegment_data/bigrams.txt'.
-
-.. py:data:: TOTAL
-   :module: wordsegment
-
-    Total number of unigrams in the corpus.
-    Need not match `sum(UNIGRAMS.values())`.
-    Defaults to 1,024,908,267,229.
+    Loaded from the file 'wordsegment/bigrams.txt'.
