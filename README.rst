@@ -32,7 +32,7 @@ Features
 - Developed on Python 2.7
 - Tested on CPython 2.6, 2.7, 3.2, 3.3, 3.4, 3.5, 3.6 and PyPy, PyPy3
 
-.. image:: https://api.travis-ci.org/grantjenks/wordsegment.svg
+.. image:: https://api.travis-ci.org/grantjenks/python-wordsegment.svg
     :target: http://www.grantjenks.com/docs/wordsegment/
 
 Quickstart

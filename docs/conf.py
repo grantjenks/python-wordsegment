@@ -126,7 +126,7 @@ html_theme_options = {
     'show_powered_by': False,
     'show_related': True,
     'github_user': 'grantjenks',
-    'github_repo': 'wordsegment',
+    'github_repo': 'python-wordsegment',
     'github_type': 'star',
 }
 
