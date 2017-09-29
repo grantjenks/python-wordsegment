@@ -38,7 +38,7 @@ Features
 Quickstart
 ----------
 
-Installing WordSegment is simple with
+Installing `WordSegment`_ is simple with
 `pip <http://www.pip-installer.org/>`_::
 
     $ pip install wordsegment
@@ -63,10 +63,10 @@ phrase into a list of its parts::
 The `load` function reads and parses the unigrams and bigrams data from
 disk. Loading the data only needs to be done once.
 
-WordSegment also provides a command-line interface for batch processing. This
-interface accepts two arguments: in-file and out-file. Lines from in-file are
-iteratively segmented, joined by a space, and written to out-file. Input and
-output default to stdin and stdout respectively. ::
+`WordSegment`_ also provides a command-line interface for batch
+processing. This interface accepts two arguments: in-file and out-file. Lines
+from in-file are iteratively segmented, joined by a space, and written to
+out-file. Input and output default to stdin and stdout respectively. ::
 
     $ echo thisisatest | python -m wordsegment
     this is a test
@@ -123,8 +123,19 @@ Some bigrams begin with `<s>`. This is to indicate the start of a bigram::
 The unigrams and bigrams data is stored in the `wordsegment` directory in
 the `unigrams.txt` and `bigrams.txt` files respectively.
 
-Reference and Indices
----------------------
+User Guide
+----------
+
+* `Word Segment API Reference`_
+* `Using a Different Corpus`_
+* `Python: Load dict Fast From File`_
+
+.. _`Word Segment API Reference`: http://www.grantjenks.com/docs/wordsegment/api.html
+.. _`Using a Different Corpus`: http://www.grantjenks.com/docs/wordsegment/using-a-different-corpus.html
+.. _`Python: Load dict Fast From File`: http://www.grantjenks.com/docs/wordsegment/python-load-dict-fast-from-file.html
+
+References
+----------
 
 * `WordSegment Documentation`_
 * `WordSegment at PyPI`_
