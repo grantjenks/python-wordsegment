@@ -5,7 +5,8 @@ into its constituent parts. For example, consider a phrase like "thisisatest".
 For humans, it's relatively easy to parse. This module makes it easy for
 machines too. Use `segment` to parse a phrase into its parts:
 
->>> from wordsegment import segment
+>>> from wordsegment import load, segment
+>>> load()
 >>> segment('thisisatest')
 ['this', 'is', 'a', 'test']
 
@@ -32,14 +33,45 @@ import sys
 
 
 class Segmenter(object):
-    alphabet = set('abcdefghijklmnopqrstuvwxyz0123456789')
+    """Segmenter
+
+    Support for object-oriented programming and customization.
+
+    """
+    ALPHABET = set('abcdefghijklmnopqrstuvwxyz0123456789')
+    UNIGRAMS_FILENAME = op.join(
+        op.dirname(op.realpath(__file__)),
+        'unigrams.txt',
+    )
+    BIGRAMS_FILENAME = op.join(
+        op.dirname(op.realpath(__file__)),
+        'bigrams.txt',
+    )
+    TOTAL = 1024908267229.0
+    LIMIT = 24
 
 
-    def __init__(self, unigrams, bigrams, total):
-        self.unigrams = dict(unigrams)
-        self.bigrams = dict(bigrams)
-        self.total = float(total)
-        self.limit = max(map(len, self.unigrams))
+    def __init__(self):
+        self.unigrams = {}
+        self.bigrams = {}
+        self.total = 0.0
+        self.limit = 0
+
+
+    def load(self):
+        "Load unigram and bigram counts from disk."
+        self.unigrams.update(self.parse(self.UNIGRAMS_FILENAME))
+        self.bigrams.update(self.parse(self.BIGRAMS_FILENAME))
+        self.total = self.TOTAL
+        self.limit = self.LIMIT
+
+
+    @staticmethod
+    def parse(filename):
+        "Read `filename` and parse tab-separated file of word and count pairs."
+        with io.open(filename, encoding='utf-8') as reader:
+            lines = (line.split('\t') for line in reader)
+            return dict((word, float(number)) for word, number in lines)
 
 
     def score(self, word, previous=None):
@@ -136,43 +168,18 @@ class Segmenter(object):
     @classmethod
     def clean(cls, text):
         "Return `text` lower-cased with non-alphanumeric characters removed."
-        alphabet = cls.alphabet
+        alphabet = cls.ALPHABET
         text_lower = text.lower()
         letters = (letter for letter in text_lower if letter in alphabet)
         return ''.join(letters)
 
 
-def segment(text):
-    "Return list of words that is the best segmenation of `text`."
-    segmenter = load()
-    return segmenter.segment(text)
-
-
-def isegment(text):
-    "Return iterator of words that is the best segmenation of `text`."
-    segmenter = load()
-    return segmenter.isegment(text)
-
-
-_cache = {}
-
-
-def load():
-    "Load unigram and bigram counts from disk and cache Segmenter instance."
-    if 'segmenter' not in _cache:
-        directory = op.dirname(op.realpath(__file__))
-        unigrams = _parse(op.join(directory, 'unigrams.txt'))
-        bigrams = _parse(op.join(directory, 'bigrams.txt'))
-        _cache['segmenter'] = Segmenter(unigrams, bigrams, 1024908267229.0)
-
-    return _cache['segmenter']
-
-
-def _parse(filename):
-    "Read `filename` and parse tab-separated file of word and count pairs."
-    with io.open(filename, encoding='utf-8') as reader:
-        lines = (line.split('\t') for line in reader)
-        return dict((word, float(number)) for word, number in lines)
+_segmenter = Segmenter()
+bigrams = _segmenter.bigrams
+isegment = _segmenter.isegment
+load = _segmenter.load
+segment = _segmenter.segment
+unigrams = _segmenter.unigrams
 
 
 def main(arguments=()):
