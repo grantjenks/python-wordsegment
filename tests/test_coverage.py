@@ -1,15 +1,15 @@
 import os
 import sys
 from .context import wordsegment
-from wordsegment import load, main, isegment, segment, unigrams, bigrams
+from wordsegment import load, main, isegment, segment, UNIGRAMS, BIGRAMS
 
 load()
 
 def test_unigrams():
-    assert 'test' in unigrams
+    assert 'test' in UNIGRAMS
 
 def test_bigrams():
-    assert 'in the' in bigrams
+    assert 'in the' in BIGRAMS
 
 def test_segment_0():
     result = ['choose', 'spain']
