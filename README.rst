@@ -31,9 +31,14 @@ Features
 - Easy to hack (e.g. different scoring, new data, different language)
 - Developed on Python 2.7
 - Tested on CPython 2.6, 2.7, 3.2, 3.3, 3.4, 3.5, 3.6 and PyPy, PyPy3
+- Tested on Windows, Mac OS X, and Linux
+- Tested using Travis CI and AppVeyor CI
 
 .. image:: https://api.travis-ci.org/grantjenks/python-wordsegment.svg
     :target: http://www.grantjenks.com/docs/wordsegment/
+
+.. image:: https://ci.appveyor.com/api/projects/status/github/grantjenks/python-wordsegment?branch=master&svg=true
+    :target: http://www.grantjenks.com/docs/freegames/
 
 Quickstart
 ----------
