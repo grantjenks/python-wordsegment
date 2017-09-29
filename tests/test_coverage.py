@@ -1,9 +1,15 @@
 import os
 import sys
 from .context import wordsegment
-from wordsegment import load, main, segment
+from wordsegment import load, main, isegment, segment, unigrams, bigrams
 
 load()
+
+def test_unigrams():
+    assert 'test' in unigrams
+
+def test_bigrams():
+    assert 'in the' in bigrams
 
 def test_segment_0():
     result = ['choose', 'spain']
@@ -72,7 +78,7 @@ def test_segment_11():
         'it', 'to', 'sit', 'down', 'on', 'or', 'to', 'eat', 'it', 'was', 'a',
         'hobbit', 'hole', 'and', 'that', 'means', 'comfort'
     ]
-    assert segment(''.join(result)) == result
+    assert list(isegment(''.join(result))) == result
 
 def test_segment_12():
     result = [
