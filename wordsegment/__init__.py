@@ -175,11 +175,11 @@ class Segmenter(object):
 
 
 _segmenter = Segmenter()
-bigrams = _segmenter.bigrams
-isegment = _segmenter.isegment
 load = _segmenter.load
+isegment = _segmenter.isegment
 segment = _segmenter.segment
-unigrams = _segmenter.unigrams
+UNIGRAMS = _segmenter.unigrams
+BIGRAMS = _segmenter.bigrams
 
 
 def main(arguments=()):
@@ -212,7 +212,7 @@ if __name__ == '__main__':
 __all__ = [
     'Segmenter',
     'load', 'isegment', 'segment',
-    'unigrams', 'bigrams',
+    'UNIGRAMS', 'BIGRAMS',
     'main'
 ]
 __title__ = 'wordsegment'
