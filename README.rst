@@ -38,7 +38,7 @@ Features
     :target: http://www.grantjenks.com/docs/wordsegment/
 
 .. image:: https://ci.appveyor.com/api/projects/status/github/grantjenks/python-wordsegment?branch=master&svg=true
-    :target: http://www.grantjenks.com/docs/freegames/
+    :target: http://www.grantjenks.com/docs/wordsegment/
 
 Quickstart
 ----------
