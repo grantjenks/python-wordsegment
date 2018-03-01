@@ -1,7 +1,7 @@
 import os
 import sys
 from .context import wordsegment
-from wordsegment import load, main, isegment, segment, UNIGRAMS, BIGRAMS
+from wordsegment import clean, load, main, isegment, segment, UNIGRAMS, BIGRAMS
 
 load()
 
@@ -10,6 +10,9 @@ def test_unigrams():
 
 def test_bigrams():
     assert 'in the' in BIGRAMS
+
+def test_clean():
+    assert clean("Can't buy me love!") == 'cantbuymelove'
 
 def test_segment_0():
     result = ['choose', 'spain']

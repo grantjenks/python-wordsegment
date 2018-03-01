@@ -175,6 +175,7 @@ class Segmenter(object):
 
 
 _segmenter = Segmenter()        # pylint: disable=invalid-name
+clean = _segmenter.clean        # pylint: disable=invalid-name
 load = _segmenter.load          # pylint: disable=invalid-name
 isegment = _segmenter.isegment  # pylint: disable=invalid-name
 segment = _segmenter.segment    # pylint: disable=invalid-name
