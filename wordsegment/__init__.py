@@ -49,6 +49,10 @@ class Segmenter(object):
     )
     TOTAL = 1024908267229.0
     LIMIT = 24
+    WORDS_FILENAME = op.join(
+        op.dirname(op.realpath(__file__)),
+        'words.txt',
+    )
 
 
     def __init__(self):
@@ -56,6 +60,7 @@ class Segmenter(object):
         self.bigrams = {}
         self.total = 0.0
         self.limit = 0
+        self.words = []
 
 
     def load(self):
@@ -64,6 +69,9 @@ class Segmenter(object):
         self.bigrams.update(self.parse(self.BIGRAMS_FILENAME))
         self.total = self.TOTAL
         self.limit = self.LIMIT
+        with io.open(self.WORDS_FILENAME, encoding='utf-8') as reader:
+            text = reader.read()
+            self.words.extend(text.splitlines())
 
 
     @staticmethod
@@ -181,6 +189,7 @@ isegment = _segmenter.isegment  # pylint: disable=invalid-name
 segment = _segmenter.segment    # pylint: disable=invalid-name
 UNIGRAMS = _segmenter.unigrams
 BIGRAMS = _segmenter.bigrams
+WORDS = _segmenter.words
 
 
 def main(arguments=()):

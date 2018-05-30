@@ -1,7 +1,9 @@
 import os
 import sys
 from .context import wordsegment
-from wordsegment import clean, load, main, isegment, segment, UNIGRAMS, BIGRAMS
+from wordsegment import (
+    clean, load, main, isegment, segment, UNIGRAMS, BIGRAMS, WORDS,
+)
 
 load()
 
@@ -95,3 +97,8 @@ def test_main():
     main(['tests/test.txt'])
     result = os.linesep.join(('choose spain', 'this is a test')) + os.linesep
     assert sys.stdout.getvalue() == result
+
+def test_words():
+    assert len(WORDS) > 0
+    assert WORDS[0] == 'aa'
+    assert WORDS[-1] == 'zzz'
