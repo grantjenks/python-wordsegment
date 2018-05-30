@@ -227,8 +227,8 @@ __all__ = [
     'main'
 ]
 __title__ = 'wordsegment'
-__version__ = '1.2.0'
-__build__ = 0x010200
+__version__ = '1.3.0'
+__build__ = 0x010300
 __author__ = 'Grant Jenks'
 __license__ = 'Apache 2.0'
 __copyright__ = 'Copyright 2018 Grant Jenks'
