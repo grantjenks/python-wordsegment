@@ -223,12 +223,12 @@ if __name__ == '__main__':
 __all__ = [
     'Segmenter',
     'load', 'isegment', 'segment',
-    'UNIGRAMS', 'BIGRAMS',
+    'UNIGRAMS', 'BIGRAMS', 'WORDS',
     'main'
 ]
 __title__ = 'wordsegment'
-__version__ = '1.3.0'
-__build__ = 0x010300
+__version__ = '1.3.1'
+__build__ = 0x010301
 __author__ = 'Grant Jenks'
 __license__ = 'Apache 2.0'
 __copyright__ = 'Copyright 2018 Grant Jenks'
