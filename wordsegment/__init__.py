@@ -30,6 +30,8 @@ import io
 import math
 import os.path as op
 import sys
+import re 
+import string
 
 
 class Segmenter(object):
@@ -161,10 +163,27 @@ class Segmenter(object):
         for word in prefix_words:
             yield word
 
+    def segment_ignore_digits(self, text):
+        "apply segmentation only to non-numeric text"
+        ignore_chars = string.digits
+        # test if text contains digits
+        segments = re.split(r'((?=\S*[\d.])\S*)', text)
+        digit_checker = re.compile(r'\d')
+        results = []
+        for substring in segments:
+            if digit_checker.search(substring) is not None:
+                # has digits, so append substring w/out modification
+                results.append(substring)
+            else:
+                results.extend(self.isegment(substring))
+        return results
 
-    def segment(self, text):
+    def segment(self, text, ignore_digits = False):
         "Return list of words that is the best segmenation of `text`."
-        return list(self.isegment(text))
+        if ignore_digits:
+            return self.segment_ignore_digits(text)
+        else:
+            return list(self.isegment(text))
 
 
     def divide(self, text):
