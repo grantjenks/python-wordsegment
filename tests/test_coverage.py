@@ -93,6 +93,30 @@ def test_segment_12():
     ]
     assert segment(''.join(result)) == result
 
+# test ignore_digits param
+def test_segment_13():
+    result = [
+        'in', '1864', 'lincoln', 'wrote', '4', 'score', 'and', '7', 'years', 'ago', 'our', 'fathers', 'brought'
+    ]
+    # maintain spaces between words
+    assert segment(' '.join(result), True) == result
+
+# test ignore_digits param
+def test_segment_14():
+    result = [
+        'this', '$5,000', 'is', 'a', '2019', 'test', 'test1', 'asdf1'
+    ]
+    # maintain spaces between words
+    assert segment(' '.join(result), True) == result
+
+# test ignore_digits param
+def test_segment_14():
+    result = [
+        'increased', '$55', 'million', 'or', '23.8%', 'for'
+    ]
+    # maintain spaces between words
+    assert segment(' '.join(result), True) == result 
+
 def test_main():
     main(['tests/test.txt'])
     result = os.linesep.join(('choose spain', 'this is a test')) + os.linesep
