@@ -93,6 +93,10 @@ def test_segment_12():
     ]
     assert segment(''.join(result)) == result
 
+def test_segment_13():
+    result = ['hello', 'world']
+    assert segment(''.join(result)) == result
+
 def test_main():
     main(['tests/test.txt'])
     result = os.linesep.join(('choose spain', 'this is a test')) + os.linesep
