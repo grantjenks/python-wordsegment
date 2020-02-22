@@ -207,12 +207,14 @@ def main(arguments=()):
                         default=sys.stdin)
     parser.add_argument('outfile', nargs='?', type=argparse.FileType('w'),
                         default=sys.stdout)
-
+    parser.add_argument('--keep_case', action='store_true', default=False,
+                        help='maintain original case of input text')
+    
     streams = parser.parse_args(arguments)
     load()
 
     for line in iter(streams.infile.readline, ''):
-        streams.outfile.write(' '.join(segment(line.strip())))
+        streams.outfile.write(' '.join(segment(line.strip(), streams.keep_case)))
         streams.outfile.write(os.linesep)
 
 
