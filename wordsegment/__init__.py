@@ -162,7 +162,7 @@ class Segmenter(object):
             yield word
 
 
-    def segment(self, text):
+    def segment(self, text, keep_case=False):
         "Return list of words that is the best segmenation of `text`."
         return list(self.isegment(text))
 
