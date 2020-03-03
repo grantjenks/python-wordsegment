@@ -102,3 +102,9 @@ def test_words():
     assert len(WORDS) > 0
     assert WORDS[0] == 'aa'
     assert WORDS[-1] == 'zzz'
+
+def test_keep_case():
+    assert segment('\tMaintainCasing \nwith   variableSpaCING', True) \
+            == ['Maintain', 'Casing', 'with', 'variable', 'SpaCING']
+    assert segment('\tMaintainCasing \nwith   variableSpaCING', False) \
+            == ['maintain', 'casing', 'with', 'variable', 'spacing']
