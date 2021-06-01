@@ -53,6 +53,7 @@ class Segmenter(object):
         op.dirname(op.realpath(__file__)),
         'words.txt',
     )
+    CHUNK_SIZE = 250
 
 
     def __init__(self):
@@ -145,7 +146,7 @@ class Segmenter(object):
         # previous result.
 
         clean_text = self.clean(text)
-        size = 250
+        size = self.CHUNK_SIZE
         prefix = ''
 
         for offset in range(0, len(clean_text), size):
