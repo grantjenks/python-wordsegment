@@ -1,0 +1,6 @@
+[build-system]
+requires = ["setuptools>=44", "wheel", "read_version"]
+build-backend = "setuptools.build_meta"
+
+[tool.read_version]
+version = "wordsegment.__init__:__version__"
